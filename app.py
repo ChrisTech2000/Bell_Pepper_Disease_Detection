@@ -1,41 +1,3 @@
-'''import streamlit as st
-import tensorflow as tf
-import numpy as np
-from PIL import Image
-
-# Loading the trained model
-@st.cache_resource
-def load_model():
-    model = tf.keras.models.load_model("vgg19_model_2.h5")
-    return model
-
-model = load_model()
-
-# POC interface
-st.title("Manamuz Groups")
-uploaded_file = st.file_uploader("Upload a leaf image", type=["jpg", "jpeg", "png"])
-
-if uploaded_file:
-    image = Image.open(uploaded_file).convert('RGB')
-    #resized_image = image.resize(128, 128)
-    st.image(image.resize((128,128)), caption='Bell_Pepper_leaf', use_container_width=False)
-
-    # Preprocess stage
-    img = image.resize((128, 128))
-    img_array = np.array(img) / 255.0
-    img_array = np.expand_dims(img_array, axis=0)
-
-    # Prediction stage
-    prediction = model.predict(img_array)[0]
-    class_names = ["Healthy", "Unhealthy"]
-    pred_class = class_names[np.argmax(prediction)]
-    confidence = np.max(prediction) * 100
-
-    st.markdown(f"**Prediction:** {pred_class}")
-    st.markdown(f"**Confidence:** {confidence:.2f}%")
-
-    if st.button("Chat with Virtual Agronomist"):
-        st.info("Agronomist chat coming soon...")'''
 
 #https://drive.google.com/file/d/1synPljrV3ooPhZJqHkO9oCu4wxi3KV_K/view?usp=drive_link
 #1synPljrV3ooPhZJqHkO9oCu4wxi3KV_K
@@ -55,7 +17,7 @@ if uploaded_file:
 #st.success("Model Loaded Successfully")
 
 
-
+import time
 from tensorflow.keras.models import load_model
 import os
 import gdown
@@ -66,6 +28,9 @@ from PIL import Image
 
 # Configuring the streamlit page
 st.set_page_config(page_title="Manamuz Group", layout="centered")
+
+success_holder = st.empty()
+
 
 MODEL_PATH = "vgg19_model_2.h5"
 MODEL_URL = "https://drive.google.com/uc?id=1synPljrV3ooPhZJqHkO9oCu4wxi3KV_K"
@@ -78,7 +43,9 @@ def load_model_from_drive():
     return load_model(MODEL_PATH)
 
 model = load_model_from_drive()
-st.success("Model Loaded Successfully")
+success_holder.success("Model Loaded Successfully")
+time.sleep(0.5)
+success_holder.empty()
 
 
 
