@@ -42,11 +42,17 @@ def load_model_from_drive():
             gdown.download(MODEL_URL, MODEL_PATH, quiet=False)
     return load_model(MODEL_PATH)
 
-model = load_model_from_drive()
+#model = load_model_from_drive()
 #success_holder.success("Model Loaded Successfully")
-st.toast("Model Loaded Successfully")
-time.sleep(0.5)
+##time.sleep(0.5)
 #success_holder.empty()
+
+if "model_loaded" not in st.session_state:
+    model = load_model_from_drive()
+    st.session_state.model_loaded = True
+    st.toast("Model Loaded Successfully")
+else:
+    model = load_model(MODEL_PATH)
 
 
 
