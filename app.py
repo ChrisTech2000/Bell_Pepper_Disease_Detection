@@ -47,10 +47,14 @@ def load_model_from_drive():
 ##time.sleep(0.5)
 #success_holder.empty()
 
+#Leting the load ed successfully show once
 if "model_loaded" not in st.session_state:
     model = load_model_from_drive()
     st.session_state.model_loaded = True
-    st.toast("Model Loaded Successfully")
+    st.markdown(
+        "<h4 style='color:green;'>Model Loaded Successfully</h4>",
+        unsafe_allow_html=True
+    )
 else:
     model = load_model(MODEL_PATH)
 
