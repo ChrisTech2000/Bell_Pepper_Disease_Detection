@@ -29,7 +29,7 @@ from PIL import Image
 # Configuring the streamlit page
 st.set_page_config(page_title="Manamuz Group", layout="centered")
 
-success_holder = st.empty()
+#success_holder = st.empty()
 
 
 MODEL_PATH = "vgg19_model_2.h5"
@@ -43,9 +43,10 @@ def load_model_from_drive():
     return load_model(MODEL_PATH)
 
 model = load_model_from_drive()
-success_holder.success("Model Loaded Successfully")
+#success_holder.success("Model Loaded Successfully")
+st.toast("Model Loaded Successfully")
 time.sleep(0.5)
-success_holder.empty()
+#success_holder.empty()
 
 
 
