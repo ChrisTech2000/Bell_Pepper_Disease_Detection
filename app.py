@@ -42,6 +42,7 @@ if uploaded_file:
 #https://drive.google.com/uc?id=1synPljrV3ooPhZJqHkO9oCu4wxi3KV_K
 #MODEL_PATH = "vgg19_model_2.h5"
 #MODEL_URL = "https://drive.google.com/uc?id=1ABCdEfGhiJklMnOPqrS"
+#https://drive.google.com/file/d/1synPljrV3ooPhZJqHkO9oCu4wxi3KV_K/view?usp=sharing
 #pip install gdown
 #import gdown
 
@@ -67,7 +68,7 @@ from PIL import Image
 st.set_page_config(page_title="Manamuz Group", layout="centered")
 
 MODEL_PATH = "vgg19_model_2.h5"
-MODEL_URL = "https://drive.google.com/uc?id=1ABCdEfGhiJklMnOPqrS"
+MODEL_URL = "https://drive.google.com/uc?id=1synPljrV3ooPhZJqHkO9oCu4wxi3KV_K"
 @st.cache_resource
 
 def load_model_from_drive():
