@@ -33,7 +33,7 @@ st.set_page_config(page_title="Manamuz Group", layout="centered")
 
 #Defining session state tohandle navigation
 if "page" not in st.session_state:
-    st.session_state = "main"
+    st.session_state.page = "main"
 
 
 #navigating to chat page
