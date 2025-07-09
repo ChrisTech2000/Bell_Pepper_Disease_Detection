@@ -106,7 +106,7 @@ else:
                 st.rerun()
 
         if "predicted_class" in st.session_state:
-            pred_class = st.session_state.preicted_class
+            pred_class = st.session_state.predicted_class
             confidence = st.session_state.prediction_confidence
 
             # Displaying the prediction result
