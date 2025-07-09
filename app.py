@@ -26,6 +26,9 @@ import tensorflow as tf
 import numpy as np
 from PIL import Image
 
+if isinstance(st.session_state, str):
+    st.session_state.clear()
+
 # Configuring the streamlit page
 st.set_page_config(page_title="Manamuz Group", layout="centered")
 
