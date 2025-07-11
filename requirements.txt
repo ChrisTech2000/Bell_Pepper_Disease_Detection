@@ -3,4 +3,7 @@ streamlit
 pillow
 numpy
 gdown
+llama-index
+langchain
+llama-cpp-python
 
