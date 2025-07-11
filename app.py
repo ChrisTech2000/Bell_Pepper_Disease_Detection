@@ -18,7 +18,7 @@
 
 
 import time
-from tensorflow.keras.models import load_model
+from keras.models import load_model
 import os
 import gdown
 import streamlit as st
