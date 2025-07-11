@@ -26,6 +26,12 @@ import tensorflow as tf
 import numpy as np
 from PIL import Image
 
+
+# LLaMA Imports
+from llama_index.core import VectorStoreIndex, ServiceContext
+from llama_index.llms.llama_cpp import LlamaCPP
+from langchain.schema import SystemMessage, HumanMessage, AIMessage
+
 if isinstance(st.session_state, str):
     st.session_state.clear()
 
@@ -43,6 +49,62 @@ if "page" not in st.session_state:
 if st.session_state.page == "chat":
     st.title("Talk to Virtual Agronomist")
     st.markdown("Ask your Question About your Bell Pepper Crop")
+
+    LLAMA_MODEL_PATH = "llama-2-7b-chat.Q2_K.gguf"
+    LLAMA_MODEL_URL = "https://drive.google.com/uc?id=1pmzmY3vuSkSeFDptJryHjzUoXyHSYcS3"
+
+
+    @st.cache_resource
+    def download_llama_model():
+        if not os.path.exists(LLAMA_MODEL_PATH):
+            with st.spinner("Downloading LLaMA model ... (this might take a while, exercise patient)"):
+                gdown.download(LLAMA_MODEL_URL, LLAMA_MODEL_PATH, quiet=False)
+        return LLAMA_MODEL_PATH
+    
+    llama_model_path = download_llama_model()
+
+
+    @st.cache_resource
+    def select_llm():
+        return LlamaCPP(model_path=llama_model_path, temperature=0.1, max_new_tokens=500, context_window=3900, generate_kwargs={}, model_kwargs={"n_gpu_layers":1}, verbose=True)
+    
+
+    def init_message():
+        clear_button = st.sidebar.button("Clear Conversation", key = "clear")
+
+        if clear_button:
+            st.session_state.pop("messages", None)
+            st.rerun()
+
+        if clear_button or "messages" not in st.session_state:
+            st.session_state.messages =[SystemMessage(content="You are a helpful AI assistant. Reply Your Answer in a markdown format.")]
+
+
+    def get_answer(llm, messages) -> str:
+        response = llm.complete(messages)
+        return response.text
+    
+
+    llm = select_llm()
+    init_message()
+
+
+    if user_input := st.chat_input("Input Your Observation"):
+        st.session_state.messages.append(HumanMessage(content=user_input))
+        with st.spinner("Virtual Agronomist is typing"):
+            answer = get_answer(llm, user_input)
+        st.session_state.messages.append(AIMessage(content=answer))
+
+
+    messages = st.session_state.get("messages", [])
+    for message in messages:
+        if isinstance(message, AIMessage):
+            with st.chat_message("assistant"):
+                st.markdown(message.content)
+
+        elif isinstance(message, HumanMessage):
+            with st.chat_message("user"):
+                st.markdown(message.content)
 
 
     if st.button("Back to App"):
