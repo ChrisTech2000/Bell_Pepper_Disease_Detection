@@ -1,22 +1,3 @@
-
-#https://drive.google.com/file/d/1synPljrV3ooPhZJqHkO9oCu4wxi3KV_K/view?usp=drive_link
-#1synPljrV3ooPhZJqHkO9oCu4wxi3KV_K
-#https://drive.google.com/uc?id=1synPljrV3ooPhZJqHkO9oCu4wxi3KV_K
-#MODEL_PATH = "vgg19_model_2.h5"
-#MODEL_URL = "https://drive.google.com/uc?id=1ABCdEfGhiJklMnOPqrS"
-#https://drive.google.com/file/d/1synPljrV3ooPhZJqHkO9oCu4wxi3KV_K/view?usp=sharing
-#pip install gdown
-#import gdown
-
-#def load_model():
-    #with st.spinner("Loading Prediction model..."):
-        #model = tf.keras.models.load_model("vgg19_model_2.h5")
-    #return model
-
-#model = load_model()
-#st.success("Model Loaded Successfully")
-
-
 import time
 from tensorflow.keras.models import load_model
 import os
@@ -24,13 +5,14 @@ import gdown
 import streamlit as st
 import numpy as np
 from PIL import Image
-import tensorflow as tf
+
+#import tensorflow as tf
 
 
-# LLaMA Imports
-from llama_index.core import VectorStoreIndex, ServiceContext
-from llama_index.llms.llama_cpp import LlamaCPP
-from langchain.schema import SystemMessage, HumanMessage, AIMessage
+#LLaMA Imports
+#from llama_index.core import VectorStoreIndex, ServiceContext
+#from llama_index.llms.llama_cpp import LlamaCPP
+#from langchain.schema import SystemMessage, HumanMessage, AIMessage
 
 if isinstance(st.session_state, str):
     st.session_state.clear()
@@ -50,7 +32,7 @@ if st.session_state.page == "chat":
     st.title("Talk to Virtual Agronomist")
     st.markdown("Ask your Question About your Bell Pepper Crop")
 
-    LLAMA_MODEL_PATH = "llama-2-7b-chat.Q2_K.gguf"
+    '''LLAMA_MODEL_PATH = "llama-2-7b-chat.Q2_K.gguf"
     LLAMA_MODEL_URL = "https://drive.google.com/uc?id=1pmzmY3vuSkSeFDptJryHjzUoXyHSYcS3"
 
 
@@ -109,7 +91,7 @@ if st.session_state.page == "chat":
 
     if st.button("Back to App"):
         st.session_state.page = "main"
-        st.rerun()
+        st.rerun()'''
 
 
 else:
