@@ -10,9 +10,9 @@ from PIL import Image
 
 
 #LLaMA Imports
-#from llama_index.core import VectorStoreIndex, ServiceContext
-#from llama_index.llms.llama_cpp import LlamaCPP
-#from langchain.schema import SystemMessage, HumanMessage, AIMessage
+from llama_index.core import VectorStoreIndex, ServiceContext
+from llama_index.llms.llama_cpp import LlamaCPP
+from langchain.schema import SystemMessage, HumanMessage, AIMessage
 
 if isinstance(st.session_state, str):
     st.session_state.clear()
@@ -32,7 +32,7 @@ if st.session_state.page == "chat":
     st.title("Talk to Virtual Agronomist")
     st.markdown("Ask your Question About your Bell Pepper Crop")
 
-    '''LLAMA_MODEL_PATH = "llama-2-7b-chat.Q2_K.gguf"
+    LLAMA_MODEL_PATH = "llama-2-7b-chat.Q2_K.gguf"
     LLAMA_MODEL_URL = "https://drive.google.com/uc?id=1pmzmY3vuSkSeFDptJryHjzUoXyHSYcS3"
 
 
@@ -91,7 +91,7 @@ if st.session_state.page == "chat":
 
     if st.button("Back to App"):
         st.session_state.page = "main"
-        st.rerun()'''
+        st.rerun()
 
 
 else:
