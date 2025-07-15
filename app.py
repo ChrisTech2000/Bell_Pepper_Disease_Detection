@@ -10,7 +10,7 @@ from PIL import Image
 
 
 #LLaMA Imports
-from llama_index.core import VectorStoreIndex, ServiceContext
+#from llama_index.core import VectorStoreIndex, ServiceContext
 from llama_index.llms.llama_cpp import LlamaCPP
 from langchain.schema import SystemMessage, HumanMessage, AIMessage
 
