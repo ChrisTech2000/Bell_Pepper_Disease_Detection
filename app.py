@@ -1,5 +1,5 @@
 import time
-from tensorflow.keras.models import load_model
+#from tensorflow.keras.models import load_model
 import os
 import gdown
 import streamlit as st
@@ -95,6 +95,7 @@ if st.session_state.page == "chat":
 
 
 else:
+    from tensorflow.keras.models import load_model
     MODEL_PATH = "vgg19_model_2.h5"
     MODEL_URL = "https://drive.google.com/uc?id=1synPljrV3ooPhZJqHkO9oCu4wxi3KV_K"
     @st.cache_resource
