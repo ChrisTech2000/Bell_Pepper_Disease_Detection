@@ -1,12 +1,8 @@
 
-
+#llama-index==0.12.48
+#langchain==0.3.26
+#llama_cpp_python==0.3.12
 #import tensorflow as tf
-
-
-#LLaMA Imports
-#from llama_index.core import VectorStoreIndex, ServiceContext
-
-
 
 import time
 #from tensorflow.keras.models import load_model
@@ -15,6 +11,14 @@ import gdown
 import streamlit as st
 import numpy as np
 from PIL import Image
+from tensorflow.keras.models import load_model
+
+#LLaMA Imports
+#from llama_index.core import VectorStoreIndex, ServiceContext
+#from langchain.schema import SystemMessage, HumanMessage, AIMessage
+
+
+
 
 
 
@@ -36,7 +40,7 @@ if st.session_state.page == "chat":
     st.title("Talk to Virtual Agronomist")
     st.markdown("Ask your Question About your Bell Pepper Crop")
 
-    LLAMA_MODEL_PATH = "llama-2-7b-chat.Q2_K.gguf"
+    '''LLAMA_MODEL_PATH = "llama-2-7b-chat.Q2_K.gguf"
     LLAMA_MODEL_URL = "https://drive.google.com/uc?id=1pmzmY3vuSkSeFDptJryHjzUoXyHSYcS3"
 
 
@@ -49,8 +53,7 @@ if st.session_state.page == "chat":
     
     llama_model_path = download_llama_model()
 
-    from llama_index.llms.llama_cpp import LlamaCPP
-    from langchain.schema import SystemMessage, HumanMessage, AIMessage
+
     @st.cache_resource
     def select_llm():
         return LlamaCPP(model_path=llama_model_path, temperature=0.1, max_new_tokens=500, context_window=3900, generate_kwargs={}, model_kwargs={"n_gpu_layers":1}, verbose=True)
@@ -96,11 +99,11 @@ if st.session_state.page == "chat":
 
     if st.button("Back to App"):
         st.session_state.page = "main"
-        st.rerun()
+        st.rerun()'''
 
 
 else:
-    from tensorflow.keras.models import load_model
+    
     MODEL_PATH = "vgg19_model_2.h5"
     MODEL_URL = "https://drive.google.com/uc?id=1synPljrV3ooPhZJqHkO9oCu4wxi3KV_K"
     @st.cache_resource
