@@ -5,8 +5,8 @@
 
 #LLaMA Imports
 #from llama_index.core import VectorStoreIndex, ServiceContext
-from llama_index.llms.llama_cpp import LlamaCPP
-from langchain.schema import SystemMessage, HumanMessage, AIMessage
+
+
 
 import time
 #from tensorflow.keras.models import load_model
@@ -49,7 +49,8 @@ if st.session_state.page == "chat":
     
     llama_model_path = download_llama_model()
 
-
+    from llama_index.llms.llama_cpp import LlamaCPP
+    from langchain.schema import SystemMessage, HumanMessage, AIMessage
     @st.cache_resource
     def select_llm():
         return LlamaCPP(model_path=llama_model_path, temperature=0.1, max_new_tokens=500, context_window=3900, generate_kwargs={}, model_kwargs={"n_gpu_layers":1}, verbose=True)
